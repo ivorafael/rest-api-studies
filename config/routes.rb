@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :schools, except: [:new, :edit]
       resources :branches, except: [:new, :edit]
 
-      scope ':school' do
+      scope '/p' do
         get '/branches' => 'branches#list_by_school'
       end
     end

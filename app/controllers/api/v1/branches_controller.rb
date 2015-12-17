@@ -1,24 +1,11 @@
 class Api::V1::BranchesController < ApplicationController
   before_action :set_branch, only: [:show, :update, :destroy]
+  before_action :set_school_id, only: [:index, :show, :list_by_school]
 
   def list_by_school
-    @school = Api::V1::School.find_by(slug: params[:school])
+    @branches = Api::V1::Branch.where({'school_id' => @school_id})
 
-    # logger.debug '---------------------------------------------'
-    # logger.debug @school.nil?
-    # logger.debug '---------------------------------------------'
-
-    if @school.nil?
-      render json: {'success' => false, 'error' => 'no_school_found'}
-    else
-      @branches = Api::V1::Branch.where({'school_id' => @school[:id]})
-
-      if @branches.empty?
-        render json: {'success' => false, 'error' => 'no_branch_found'}
-      else
-        render json: {'success' => true, 'branches' => @branches}  
-      end
-    end
+    render json: @branches
   end
 
   # GET /branches
@@ -78,6 +65,11 @@ class Api::V1::BranchesController < ApplicationController
   end
 
   private
+
+    def set_school_id
+      @school_id = Base64.decode64(request.headers["s651o"]).split(".")[2][1..100].to_i / 624
+      logger.debug @school_id
+    end
 
     def set_branch
       @branch = Api::V1::Branch.find(params[:id])
