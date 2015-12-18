@@ -13,7 +13,7 @@ class BranchesControllerTest < ActionController::TestCase
 
   test "should create branch" do
     assert_difference('Branch.count') do
-      post :create, branch: { active: @branch.active, name: @branch.name, school_id: @branch.school_id, slug: @branch.slug }
+      post :create, branch: { active: @branch.active, name: @branch.name, school_id: @branch.school_id }
     end
 
     assert_response 201
@@ -25,7 +25,7 @@ class BranchesControllerTest < ActionController::TestCase
   end
 
   test "should update branch" do
-    put :update, id: @branch, branch: { active: @branch.active, name: @branch.name, school_id: @branch.school_id, slug: @branch.slug }
+    put :update, id: @branch, branch: { active: @branch.active, name: @branch.name, school_id: @branch.school_id }
     assert_response 204
   end
 

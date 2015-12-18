@@ -1,6 +1,7 @@
 class Api::V1::SchoolsController < ApplicationController
   before_action :set_school, only: [:show, :update, :destroy]
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # GET /schools
   # GET /schools.json
   def index
@@ -9,12 +10,14 @@ class Api::V1::SchoolsController < ApplicationController
     render json: @schools
   end
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # GET /schools/1
   # GET /schools/1.json
   def show
     render json: @school
   end
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # POST /schools
   # POST /schools.json
   def create
@@ -27,31 +30,26 @@ class Api::V1::SchoolsController < ApplicationController
     @school = Api::V1::School.new(params)
 
     if @school.save
-      params[:slug] = "#{@school[:name].dasherize.downcase}-#{@school[:id]}"
-
-      if @school.update(params)
-        render json: @school, status: :created
-      else
-        render json: @school.errors, status: :unprocessable_entity      
-      end
+      render json: @school, status: :created
     else
       render json: @school.errors, status: :unprocessable_entity    
     end
   end
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # PATCH/PUT /schools/1
   # PATCH/PUT /schools/1.json
   def update
     @school = Api::V1::School.find(params[:id])
 
     if @school.update(school_params)
-      # head :no_content
-      render json: @school, status: :ok
+      head :ok
     else
       render json: @school.errors, status: :unprocessable_entity
     end
   end
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # DELETE /schools/1
   # DELETE /schools/1.json
   def destroy
@@ -60,6 +58,7 @@ class Api::V1::SchoolsController < ApplicationController
     head :no_content
   end
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   private
 
     def set_school

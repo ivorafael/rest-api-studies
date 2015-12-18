@@ -4,10 +4,15 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :schools, except: [:new, :edit]
       resources :branches, except: [:new, :edit]
+      resources :groups, except: [:new, :edit]
 
-      scope '/p' do
-        get '/branches' => 'branches#list_by_school'
+      scope '/schools' do
+        get '/:id'                                        => 'schools#show'
+        get '/:school_id/branches'                        => 'branches#list_by_school_id'
+        get '/:school_id/branches/:id'                    => 'branches#show'
+        get '/:school_id/branches/:branch_id/groups'      => 'groups#list_by_branch_id'
       end
+
     end
   end
 

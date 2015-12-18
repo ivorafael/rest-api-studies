@@ -13,7 +13,7 @@ class SchoolsControllerTest < ActionController::TestCase
 
   test "should create school" do
     assert_difference('School.count') do
-      post :create, school: { active: @school.active, name: @school.name, slug: @school.slug }
+      post :create, school: { active: @school.active, name: @school.name }
     end
 
     assert_response 201
@@ -25,7 +25,7 @@ class SchoolsControllerTest < ActionController::TestCase
   end
 
   test "should update school" do
-    put :update, id: @school, school: { active: @school.active, name: @school.name, slug: @school.slug }
+    put :update, id: @school, school: { active: @school.active, name: @school.name }
     assert_response 204
   end
 
