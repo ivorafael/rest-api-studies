@@ -1,0 +1,38 @@
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Pilares:
+- Admin (Master/Diretora)
+- Aplicativo (Mães)
+- Aplicativo (Professoras)
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Session
+  - User
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Api
+
+  # Only master
+  /schools
+  /branches
+  /groups
+  /students
+
+  # Only directors
+  /dashboard
+
+  # Only teachers
+  /app/school
+
+  # Only clients
+  /app/client
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Escolas
+  Filiais
+    Turma
+      Alunos
+        Avisos
+        Refeicões
+      Cardapio
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
